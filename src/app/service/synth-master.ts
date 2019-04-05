@@ -1,21 +1,25 @@
 
 import * as Tone from 'tone';
+import { FrequencyTable } from './frequency-table';
 
 export class SynthMaster {
 
   private oscillator;
+  private oscillator2;
   private ampEnvelope;
   private filter;
+  private frequencyTable;
 
-  constructor() {
+  constructor(frequencyTable: FrequencyTable) {
     this.initialize();
   }
 
-  public trigger(frequency: number) {
+  public trigger(frequency: number, frequency2: number) {
 
     this.startOscillators();
 
     this.oscillator.frequency.value = frequency;
+    this.oscillator2.frequency.value = frequency2;
     this.ampEnvelope.triggerAttack();
   }
 
@@ -35,11 +39,20 @@ export class SynthMaster {
   }
 
   public updateOSC1Wave(value: number) {
-    this.oscillator.wave = this.getWave(value);
+    this.oscillator.type = this.getWave(value);
+  }
+
+  public updateOSC2Wave(value: number) {
+    this.oscillator2.type = this.getWave(value);
+  }
+
+  public setBaseShift() {
+    
   }
 
   private initialize() {
     this.oscillator = new Tone.Oscillator(440, 'sine');
+    this.oscillator2 = new Tone.Oscillator(440, 'sine');
 
     this.ampEnvelope = new Tone.AmplitudeEnvelope({
       attack: 0.1,
@@ -51,6 +64,7 @@ export class SynthMaster {
     this.filter = new Tone.Filter(1, 'lowpass');
 
     this.oscillator.connect(this.filter);
+    this.oscillator2.connect(this.filter);
     this.filter.connect(this.ampEnvelope);
 
     this.ampEnvelope.toMaster();
@@ -59,6 +73,7 @@ export class SynthMaster {
   private startOscillators() {
     if (this.oscillator.state !== 'started') {
       this.oscillator.start();
+      this.oscillator2.start();
     }
   }
 

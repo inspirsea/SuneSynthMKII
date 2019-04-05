@@ -3,6 +3,9 @@ import { Utils } from '../Utils/utils';
 
 export class FrequencyTable {
 
+  public osc1Base = 0;
+  public osc2Base = 0;
+
   private keyTable = {
     "a": 0,
     "s": 1,
@@ -19,10 +22,14 @@ export class FrequencyTable {
   };
 
 
-  public getFrequencyOfKey(key: string) {
+  public getFrequencyOfKey(key: string, osc: number) {
 
     let shift = this.keyTable[key];
 
-    return Utils.shiftFrequency(440, shift);
+    if (0) {
+      return Utils.shiftFrequency(440, shift + this.osc1Base);
+    } else {
+      return Utils.shiftFrequency(440, shift + this.osc2Base);
+    }
   }
 }

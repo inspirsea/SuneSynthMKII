@@ -1,22 +1,3 @@
-.background {
-  background-image: url('/assets/svg/background.svg');
-  width: 100%;
-  height: 100%;
-  border: 5px solid #de3083;
-  border-top-color: #f14698;
-  border-left-color: #de3083;
-  border-right-color: #b31b63;
-  border-bottom-color: #b31b63;
-}
-
-.title {
-  font-family: sleaze;
-  font-size: 9em;
-  color: #00b6ff;
-  text-align: center;
-  text-shadow: 5px 5px 4px rgb(179, 27, 99);
-}
-
 .container {
   display: grid;
   grid-template-columns:
@@ -34,4 +15,91 @@
 app-synth {
   grid-column: main-horizontal;
   grid-row: main-vertical;
+}
+
+.synth-container {
+  display: grid;
+  grid-template-columns:
+    [s-left] 20px
+    [s-1] 1fr
+    [s-2] 1fr
+    [s-3] 1fr
+    [s-4] 1.5fr
+    [s-5] 1.5fr
+    [s-6] 2fr
+    [s-right] 20px;
+  grid-template-rows:
+    [s-top] 20px
+    [s-header] 10em
+    [sr-1] 1fr
+    [sr-2] 1fr
+    [sr-3] 1fr
+    [sr-4] 1fr
+    [s-bottom] 20px;
+  background-image: url('/assets/svg/background.svg');
+  width: 100%;
+  height: 100%;
+  border: 5px solid #de3083;
+  border-top-color: #f14698;
+  border-left-color: #de3083;
+  border-right-color: #b31b63;
+  border-bottom-color: #b31b63;
+}
+
+.title {
+  grid-column: s-1 / s-right;
+  grid-row: s-header / sr-1;
+  font-family: sleaze;
+  font-size: 7em;
+  color: #00b6ff;
+  text-align: center;
+  text-shadow: 5px 5px 4px rgb(179, 27, 99);
+}
+
+.label {
+  font-family: sleaze;
+  font-size: 2em;
+  color: #00b6ff;
+  text-align: center;
+  text-shadow: 2px 2px 1px rgb(179, 27, 99);
+}
+
+.env1 {
+  grid-column: s-6 / s-right;
+  grid-row: sr-1 / sr-3;
+}
+
+.env2 {
+  grid-column: s-6 / s-right;
+  grid-row: sr-3 / s-bottom;
+}
+
+.osc1 {
+  grid-column: s-1 / s-2;
+  grid-row: sr-1 / sr-3;
+}
+
+.osc2 {
+  grid-column: s-2 / s-3;
+  grid-row: sr-1 / sr-3;
+}
+
+.filter {
+  grid-column: s-4 / s-5;
+  grid-row: sr-1 / sr-2;
+}
+
+.lfo {
+  grid-column: s-3 / s-4;
+  grid-row: sr-1 / s-bottom;
+}
+
+.noise {
+  grid-column: s-4 / s-5;
+  grid-row: sr-2 / sr-3;
+}
+
+.volume {
+  grid-column: s-5 / s-6;
+  grid-row: sr-1 / s-bottom;
 }

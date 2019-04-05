@@ -13,21 +13,27 @@ export class SynthComponent implements OnInit {
   public sustainValue = 10;
   public releaseValue = 10;
 
-  public frequency = 0;
+  public baseShift1 = 64;
+  public baseShift2 = 64;
+
+  public frequency = 10;
   public res = 0;
 
   private master: SynthMaster;
   private frequencyTable: FrequencyTable;
   private OSC1Wave = 0;
+  private OSC2Wave = 0;
+
   private currentKey = '';
 
   @HostListener('document:keydown', ['$event'])
   keyDown(event: KeyboardEvent) {
     if (this.currentKey !== event.key) {
-      const freq = this.frequencyTable.getFrequencyOfKey(event.key);
+      const freq = this.frequencyTable.getFrequencyOfKey(event.key, 0);
+      const freq2 = this.frequencyTable.getFrequencyOfKey(event.key, 1);
 
       if (freq) {
-        this.master.trigger(freq);
+        this.master.trigger(freq, freq2);
       }
     }
 
@@ -45,11 +51,8 @@ export class SynthComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.master = new SynthMaster();
     this.frequencyTable = new FrequencyTable();
-  }
-
-  public trigger() {
+    this.master = new SynthMaster(this.frequencyTable);
   }
 
   public updateADSR(): void {
@@ -66,8 +69,20 @@ export class SynthComponent implements OnInit {
 
   }
 
+  public updateBaseShift1() {
+    // this.master.ip
+  }
+
+  public updateBaseShift2() {
+
+  }
+
   public updateOSC1Wave() {
     this.master.updateOSC1Wave(this.OSC1Wave);
+  }
+
+  public updateOSC2Wave() {
+    this.master.updateOSC2Wave(this.OSC2Wave);
   }
 
   public updateCutoff(): void {
