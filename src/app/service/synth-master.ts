@@ -13,26 +13,21 @@ export class SynthMaster {
     this.initialize();
   }
 
-  public play() {
-    this.oscillator.start();
+  public trigger(frequency: number) {
+
+    this.startOscillators();
+
+    this.oscillator.frequency.value = frequency;
+    this.ampEnvelope.triggerAttack();
   }
 
-  public key() {
-
-    this.oscillator.frequency.value = 50;
-
-    if(this.playing) {
-      this.playing = false;
-      this.ampEnvelope.triggerRelease();
-    } else {
-      this.playing = true;
-      this.ampEnvelope.triggerAttack();
-    }
+  public release() {
+    this.ampEnvelope.triggerAttack();
   }
 
   private initialize() {
     this.oscillator = new Tone.Oscillator(440, "sine");
-
+    
     this.ampEnvelope = new Tone.AmplitudeEnvelope({
       "attack" : 0.1,
       "decay" : 0.2,
@@ -45,6 +40,10 @@ export class SynthMaster {
     this.ampEnvelope.toMaster();
   }
 
-  
+  private startOscillators() {
+    if(this.oscillator.state != "started") {
+      this.oscillator.start();
+    }
+  }
 
 }
