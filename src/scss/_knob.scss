@@ -58,7 +58,10 @@ app-knob {
   .knob-label {
     width: 100%;
     text-align: center;
-    font-size: 14px;
+    font-size: 16px;
     letter-spacing: 1px;
+    font-family: sleaze;
+    color: #00b6ff;
+    text-shadow: 2px 2px 0px rgb(179, 27, 99);
   }
 }
