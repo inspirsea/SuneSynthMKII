@@ -1,3 +1,6 @@
+import { SynthMaster } from './synth-master';
+import { Utils } from '../Utils/utils';
+
 export class FrequencyTable {
 
   private keyTable = {
@@ -16,4 +19,10 @@ export class FrequencyTable {
   };
 
 
+  public getFrequencyOfKey(key: string) {
+
+    let shift = this.keyTable[key];
+
+    return Utils.shiftFrequency(440, shift);
+  }
 }

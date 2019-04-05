@@ -15,15 +15,14 @@ export class SynthComponent implements OnInit {
 
   @HostListener('document:keypress', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) { 
-    
-    console.log(event.key);
-    //this.master.trigger(frequencyTable.getFrequenzy(event.key));
+    this.master.trigger(this.frequencyTable.getFrequencyOfKey(event.key));
   }
 
   constructor() { }
 
   ngOnInit() {
     this.master = new SynthMaster();
+    this.frequencyTable = new FrequencyTable();
   }
 
   public trigger() {
