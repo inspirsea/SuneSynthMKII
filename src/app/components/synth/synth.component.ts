@@ -11,6 +11,14 @@ export class SynthComponent implements OnInit {
 
   private master: SynthMaster;
 
+  public attackValue = 0;
+  public delayValue = 0;
+  public sustainValue = 0;
+  public releaseValue = 0;
+
+  public frequency = 0;
+  public res = 0;
+
   constructor() { }
 
   ngOnInit() {
@@ -25,4 +33,15 @@ export class SynthComponent implements OnInit {
     this.master.key();
   }
 
+  public updateADSR(): void {
+
+  }
+
+  public updateRes(): void {
+
+  }
+
+  public updateCutoff(): void {
+
+  }
 }
