@@ -27,23 +27,25 @@ export class SynthMaster {
   }
 
   private initialize() {
-    this.oscillator = new Tone.Oscillator(440, "sine");
-    
+    this.oscillator = new Tone.Oscillator(440, 'sine');
+
     this.ampEnvelope = new Tone.AmplitudeEnvelope({
-      "attack": 0.1,
-      "decay": 0.2,
-      "sustain": 0.5,
-      "release": 0.8,
+      attack: 0.1,
+      decay: 0.2,
+      sustain: 0.5,
+      release: 0.8,
     });
 
-    this.oscillator.connect(this.ampEnvelope);
+    this.filter = new Tone.Filter(500, 'highpass');
 
+    this.oscillator.connect(this.filter);
+    this.filter.connect(this.ampEnvelope);
 
     this.ampEnvelope.toMaster();
   }
 
   private startOscillators() {
-    if(this.oscillator.state != "started") {
+    if (this.oscillator.state !== 'started') {
       this.oscillator.start();
     }
   }

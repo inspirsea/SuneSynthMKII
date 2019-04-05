@@ -1,5 +1,4 @@
 import { Component, OnInit, HostListener } from '@angular/core';
-import * as Tone from 'tone';
 import { SynthMaster } from 'src/app/service/synth-master';
 import { FrequencyTable } from 'src/app/service/frequency-table';
 
@@ -12,11 +11,11 @@ export class SynthComponent implements OnInit {
 
   private master: SynthMaster;
   private frequencyTable: FrequencyTable;
-  private currentKey = "";
+  private currentKey = '';
 
   @HostListener('document:keydown', ['$event'])
   keyDown(event: KeyboardEvent) {
-    if(this.currentKey != event.key) {
+    if(this.currentKey !== event.key) {
       this.master.trigger(this.frequencyTable.getFrequencyOfKey(event.key));
     }
 
@@ -24,11 +23,10 @@ export class SynthComponent implements OnInit {
   }
 
   @HostListener('document:keyup', ['$event'])
-  keyUp() { 
+  keyUp() {
     this.master.release();
-    this.currentKey = "";
+    this.currentKey = '';
   }
-  
 
   constructor() { }
 
