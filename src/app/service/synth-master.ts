@@ -5,10 +5,7 @@ export class SynthMaster {
 
   private oscillator;
   private ampEnvelope;
-  private gainNode;
   private filter;
-
-  private playing = false;
 
   constructor() {
     this.initialize();
