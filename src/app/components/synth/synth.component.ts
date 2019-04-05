@@ -8,16 +8,17 @@ import { FrequencyTable } from 'src/app/service/frequency-table';
   styleUrls: ['./synth.component.scss']
 })
 export class SynthComponent implements OnInit {
-  public attackValue = 0.1;
-  public decayValue = 0.1;
-  public sustainValue = 0.1;
-  public releaseValue = 0.1;
+  public attackValue = 10;
+  public decayValue = 10;
+  public sustainValue = 10;
+  public releaseValue = 10;
 
   public frequency = 0;
   public res = 0;
 
   private master: SynthMaster;
   private frequencyTable: FrequencyTable;
+  private OSC1Wave = 0;
   private currentKey = '';
 
   @HostListener('document:keydown', ['$event'])
@@ -65,11 +66,21 @@ export class SynthComponent implements OnInit {
 
   }
 
-  public updateCutoff(): void {
+  public updateOSC1Wave() {
+    this.master.updateOSC1Wave(this.OSC1Wave);
+  }
 
+  public updateCutoff(): void {
+    this.master.updateFilterCutoff(this.convertExponensial(this.frequency));
   }
 
   private convertValue(value: number, max: number) {
-    return 0.1 + (max / 128 * value);
+    return 0.01 + (max / 128 * value);
+  }
+
+  private convertExponensial(value: number) {
+    const part = 0.01 + (1 / 128 * value);
+    const exp = part * 150;
+    return exp * exp;
   }
 }

@@ -6,7 +6,7 @@
   <div class="test app-fader">
     <div class="flex flex-row flex-space-between flex-align-stretch" style="padding-top: 10px;">
       <app-fader [(ngModel)]="attackValue" (ngModelChange)="updateADSR()" [label]="'A'"></app-fader>
-      <app-fader [(ngModel)]="delayValue" (ngModelChange)="updateADSR()" [label]="'D'"></app-fader>
+      <app-fader [(ngModel)]="decayValue" (ngModelChange)="updateADSR()" [label]="'D'"></app-fader>
       <app-fader [(ngModel)]="sustainValue" (ngModelChange)="updateADSR()" [label]="'S'"></app-fader>
       <app-fader [(ngModel)]="releaseValue" (ngModelChange)="updateADSR()" [label]="'R'"></app-fader>
     </div>
@@ -15,7 +15,7 @@
   <div class="test app-app-knob">
     <div class="flex flex-row flex-space-between">
       <app-knob [(ngModel)]="frequency" (ngModelChange)="updateCutoff()" [label]="'cutoff'" [type]="'balanced'"></app-knob>
-      <app-knob [(ngModel)]="res" (ngModelChange)="updateRes()" [label]="'OSC 1'" [type]="'shapes'"></app-knob>
+      <app-knob [(ngModel)]="OSC1Wave" (ngModelChange)="updateOSC1Wave()" [label]="'OSC 1'" [type]="'shapes'"></app-knob>
       <app-knob [(ngModel)]="res" (ngModelChange)="updateRes()" [label]="'res'" [type]="'normal'"></app-knob>
     </div>
   </div>
