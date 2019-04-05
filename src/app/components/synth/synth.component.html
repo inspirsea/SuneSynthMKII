@@ -1,9 +1,9 @@
-<div class="background">
+<div class="synth-container">
   <div class="title">Sunesynth MK II</div>
-  <button (click)="start()">Start</button>
-  <button (click)="trigger()">Trigger</button>
 
-  <div class="test app-fader">
+
+  <div class="env1">
+    <div class="label">Amplifier Envelope</div>
     <div class="flex flex-row flex-space-between flex-align-stretch" style="padding-top: 10px;">
       <app-fader [(ngModel)]="attackValue" (ngModelChange)="updateADSR()" [label]="'A'"></app-fader>
       <app-fader [(ngModel)]="delayValue" (ngModelChange)="updateADSR()" [label]="'D'"></app-fader>
@@ -12,11 +12,64 @@
     </div>
   </div>
 
-  <div class="test app-app-knob">
+  <div class="env2">
+    <div class="label">Filter Envelope</div>
+    <div class="flex flex-row flex-space-between flex-align-stretch" style="padding-top: 10px;">
+      <app-fader [(ngModel)]="attackValue" (ngModelChange)="updateADSR()" [label]="'A'"></app-fader>
+      <app-fader [(ngModel)]="delayValue" (ngModelChange)="updateADSR()" [label]="'D'"></app-fader>
+      <app-fader [(ngModel)]="sustainValue" (ngModelChange)="updateADSR()" [label]="'S'"></app-fader>
+      <app-fader [(ngModel)]="releaseValue" (ngModelChange)="updateADSR()" [label]="'R'"></app-fader>
+    </div>
+  </div>
+
+  <div class="osc1">
+    <div class="label">OSC 1</div>
+    <div class="flex flex-column flex-space-between">
+      <app-knob [(ngModel)]="res" (ngModelChange)="updateRes()" [label]="'Shape'" [type]="'shapes'"></app-knob>
+      <app-knob [(ngModel)]="frequency" (ngModelChange)="updateCutoff()" [label]="'Freq'" [type]="'balanced'"></app-knob>
+      <app-knob [(ngModel)]="res" (ngModelChange)="updateRes()" [label]="'Fine'" [type]="'balanced'"></app-knob>
+      <app-knob [(ngModel)]="res" (ngModelChange)="updateRes()" [label]="'Mix'" [type]="'balanced'"></app-knob>
+    </div>
+  </div>
+
+  <div class="osc2">
+    <div class="label">OSC 2</div>
+    <div class="flex flex-column flex-space-between">
+      <app-knob [(ngModel)]="res" (ngModelChange)="updateRes()" [label]="'Shape'" [type]="'shapes'"></app-knob>
+      <app-knob [(ngModel)]="frequency" (ngModelChange)="updateCutoff()" [label]="'Freq'" [type]="'balanced'"></app-knob>
+      <app-knob [(ngModel)]="res" (ngModelChange)="updateRes()" [label]="'Fine'" [type]="'balanced'"></app-knob>
+      <app-knob [(ngModel)]="res" (ngModelChange)="updateRes()" [label]="'Mix'" [type]="'balanced'"></app-knob>
+    </div>
+  </div>
+
+  <div class="lfo">
+    <div class="label">LFO</div>
+    <div class="flex flex-column flex-space-between">
+      <app-knob [(ngModel)]="frequency" (ngModelChange)="updateCutoff()" [label]="'Shape'" [type]="'shapes'"></app-knob>
+      <app-knob [(ngModel)]="res" (ngModelChange)="updateRes()" [label]="'Rate'" [type]="'balanced'"></app-knob>
+    </div>
+  </div>
+
+  <div class="filter">
+    <div class="label">Filter</div>
     <div class="flex flex-row flex-space-between">
-      <app-knob [(ngModel)]="frequency" (ngModelChange)="updateCutoff()" [label]="'cutoff'" [type]="'balanced'"></app-knob>
-      <app-knob [(ngModel)]="res" (ngModelChange)="updateRes()" [label]="'OSC 1'" [type]="'shapes'"></app-knob>
-      <app-knob [(ngModel)]="res" (ngModelChange)="updateRes()" [label]="'res'" [type]="'normal'"></app-knob>
+      <app-knob [(ngModel)]="res" (ngModelChange)="updateRes()" [label]="'Cutoff'" [type]="'balanced'"></app-knob>
+      <app-knob [(ngModel)]="frequency" (ngModelChange)="updateCutoff()" [label]="'Res'" [type]="'balanced'"></app-knob>
+    </div>
+  </div>
+
+  <div class="noise">
+    <div class="label">Noise</div>
+    <div class="flex flex-row flex-space-between">
+      <app-knob [(ngModel)]="res" (ngModelChange)="updateRes()" [label]="'Noise'" [type]="'balanced'"></app-knob>
+      <app-knob [(ngModel)]="frequency" (ngModelChange)="updateCutoff()" [label]="'Mix'" [type]="'balanced'"></app-knob>
+    </div>
+  </div>
+
+  <div class="volume">
+    <div class="label">Volume</div>
+    <div class="flex flex-column flex-center">
+        <app-fader [(ngModel)]="releaseValue" (ngModelChange)="updateADSR()" [label]="'Volume'"></app-fader>
     </div>
   </div>
 </div>
