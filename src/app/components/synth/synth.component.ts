@@ -70,6 +70,6 @@ export class SynthComponent implements OnInit {
   }
 
   private convertValue(value: number, max: number) {
-    return max / 128 * value;
+    return 0.1 + (max / 128 * value);
   }
 }
