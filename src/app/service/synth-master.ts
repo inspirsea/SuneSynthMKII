@@ -23,6 +23,13 @@ export class SynthMaster {
     this.ampEnvelope.triggerRelease();
   }
 
+  public updateADSR(attack: number, decay: number, sustain: number, release: number) {
+    this.ampEnvelope.attack = attack;
+    this.ampEnvelope.decay = decay;
+    this.ampEnvelope.sustain = sustain;
+    this.ampEnvelope.release = release;
+  }
+
   private initialize() {
     this.oscillator = new Tone.Oscillator(440, 'sine');
 
@@ -33,7 +40,7 @@ export class SynthMaster {
       release: 0.8,
     });
 
-    this.filter = new Tone.Filter(500, 'highpass');
+    this.filter = new Tone.Filter(1, 'highpass');
 
     this.oscillator.connect(this.filter);
     this.filter.connect(this.ampEnvelope);
