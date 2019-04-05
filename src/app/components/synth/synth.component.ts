@@ -13,10 +13,16 @@ export class SynthComponent implements OnInit {
   private master: SynthMaster;
   private frequencyTable: FrequencyTable;
 
-  @HostListener('document:keypress', ['$event'])
-  handleKeyboardEvent(event: KeyboardEvent) { 
+  @HostListener('document:keydown', ['$event'])
+  keyDown(event: KeyboardEvent) { 
     this.master.trigger(this.frequencyTable.getFrequencyOfKey(event.key));
   }
+
+  @HostListener('document:keyup', ['$event'])
+  keyUp() { 
+    this.master.release();
+  }
+  
 
   constructor() { }
 
